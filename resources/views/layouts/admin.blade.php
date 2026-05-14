@@ -477,41 +477,21 @@
                             class="px-4 py-6 text-center text-gray-500"
                         >
                             <i class="fas fa-check-circle text-2xl mb-2"></i>
-                            <p>No pending actions</p>
+                            <p>No pending items</p>
                         </div>
 
                         <!-- PENDING LOANS -->
                         <template x-for="loan in pendingLoans" :key="loan.id">
                             <div class="px-4 py-3 border-b hover:bg-gray-50">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-800">
-                                            <i class="fas fa-hand-holding-dollar text-blue-500 mr-2"></i>
-                                            Loan Application
-                                        </p>
-                                        <p class="text-sm text-gray-600">
-                                            <span x-text="loan.user.name"></span> - KES <span x-text="loan.amount.toLocaleString()"></span>
-                                        </p>
-                                        <p class="text-xs text-gray-400" x-text="new Date(loan.created_at).toLocaleDateString()"></p>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <form method="POST" action="{{ route('admin.loans.approve', '') }}" class="inline">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="loan_id" :value="loan.id">
-                                            <button type="submit" class="px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600">
-                                                Approve
-                                            </button>
-                                        </form>
-                                        <form method="POST" action="{{ route('admin.loans.reject', '') }}" class="inline">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="loan_id" :value="loan.id">
-                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600">
-                                                Reject
-                                            </button>
-                                        </form>
-                                    </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        <i class="fas fa-hand-holding-dollar text-blue-500 mr-2"></i>
+                                        Loan Application
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span x-text="loan.user.name"></span> - KES <span x-text="loan.amount.toLocaleString()"></span>
+                                    </p>
+                                    <p class="text-xs text-gray-400" x-text="new Date(loan.created_at).toLocaleDateString()"></p>
                                 </div>
                             </div>
                         </template>
@@ -519,38 +499,25 @@
                         <!-- PENDING WITHDRAWALS -->
                         <template x-for="withdrawal in pendingWithdrawals" :key="withdrawal.id">
                             <div class="px-4 py-3 border-b hover:bg-gray-50">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <p class="font-medium text-gray-800">
-                                            <i class="fas fa-money-bill-wave text-orange-500 mr-2"></i>
-                                            Savings Withdrawal
-                                        </p>
-                                        <p class="text-sm text-gray-600">
-                                            <span x-text="withdrawal.user.name"></span> - KES <span x-text="withdrawal.amount.toLocaleString()"></span>
-                                        </p>
-                                        <p class="text-xs text-gray-400" x-text="new Date(withdrawal.created_at).toLocaleDateString()"></p>
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <form method="POST" action="{{ route('admin.savings.approve-withdrawal', '') }}" class="inline">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="saving_id" :value="withdrawal.id">
-                                            <button type="submit" class="px-3 py-1 bg-green-500 text-white text-xs rounded hover:bg-green-600">
-                                                Approve
-                                            </button>
-                                        </form>
-                                        <form method="POST" action="{{ route('admin.savings.reject-withdrawal', '') }}" class="inline">
-                                            @csrf
-                                            @method('PATCH')
-                                            <input type="hidden" name="saving_id" :value="withdrawal.id">
-                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600">
-                                                Reject
-                                            </button>
-                                        </form>
-                                    </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        <i class="fas fa-money-bill-wave text-orange-500 mr-2"></i>
+                                        Savings Withdrawal
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        <span x-text="withdrawal.user.name"></span> - KES <span x-text="withdrawal.amount.toLocaleString()"></span>
+                                    </p>
+                                    <p class="text-xs text-gray-400" x-text="new Date(withdrawal.created_at).toLocaleDateString()"></p>
                                 </div>
                             </div>
                         </template>
+
+                        <!-- FOOTER -->
+                        <div class="px-4 py-3 bg-gray-50 border-t text-center">
+                            <a href="{{ route('admin.notifications') }}" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                                <i class="fas fa-arrow-right mr-1"></i> View All Pending
+                            </a>
+                        </div>
 
                     </div>
                 </div>

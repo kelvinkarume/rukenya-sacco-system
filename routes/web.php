@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\AdminSavingController;
 use App\Http\Controllers\Admin\AdminLoanController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminReportController;
+use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ActivityLogController;
@@ -146,6 +147,26 @@ Route::post('/loans/{id}/disburse', [AdminLoanController::class, 'disburse'])
     ->name('admin.loans.repayments.details');
    Route::get('/loans/member/{id}', [AdminLoanController::class, 'memberLoans'])
     ->name('admin.loans.member');
+
+        /*
+        |--------------------------------------------------------------------------
+        | NOTIFICATIONS
+        |--------------------------------------------------------------------------
+        */
+        Route::get('/notifications', [AdminNotificationController::class, 'index'])
+            ->name('admin.notifications');
+
+        Route::patch('/notifications/loans/{id}/approve', [AdminNotificationController::class, 'approveLoan'])
+            ->name('admin.notifications.approve-loan');
+
+        Route::patch('/notifications/loans/{id}/reject', [AdminNotificationController::class, 'rejectLoan'])
+            ->name('admin.notifications.reject-loan');
+
+        Route::patch('/notifications/withdrawals/{id}/approve', [AdminNotificationController::class, 'approveWithdrawal'])
+            ->name('admin.notifications.approve-withdrawal');
+
+        Route::patch('/notifications/withdrawals/{id}/reject', [AdminNotificationController::class, 'rejectWithdrawal'])
+            ->name('admin.notifications.reject-withdrawal');
 
         /*
         |--------------------------------------------------------------------------

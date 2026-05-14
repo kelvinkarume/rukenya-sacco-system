@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class MemberController extends Controller
+class MemberController extends AdminController
 {
+    public function __construct()
+    {
+        $this->shareNotifications();
+    }
     // VIEW ALL MEMBERS
     public function index()
     {

@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class SettingController extends Controller
+class SettingController extends AdminController
 {
+    public function __construct()
+    {
+        $this->shareNotifications();
+    }
     public function index()
     {
         $settings = [
